@@ -1,1 +1,2 @@
-*.ts
+.gitignore
+test-utils.ts

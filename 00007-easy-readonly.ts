@@ -1,16 +1,16 @@
 // ============= Test Cases =============
-import type { Equal, Expect } from "./test-utils";
+import type { Equal, Expect } from "./test-utils"
 
-type cases = [Expect<Equal<MyReadonly<Todo1>, Readonly<Todo1>>>];
+type cases = [Expect<Equal<MyReadonly<Todo1>, Readonly<Todo1>>>]
 
 interface Todo1 {
-    title: string;
-    description: string;
-    completed: boolean;
+    title: string
+    description: string
+    completed: boolean
     meta: {
-        author: string;
-    };
+        author: string
+    }
 }
 
 // ============= Your Code Here =============
-type MyReadonly<T> = { readonly [P in keyof T]: T[P] };
+type MyReadonly<T> = { readonly [P in keyof T]: T[P] }
