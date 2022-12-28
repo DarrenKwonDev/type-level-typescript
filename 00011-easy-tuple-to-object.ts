@@ -28,7 +28,6 @@ type cases = [
     >
 ]
 
-// @ts-expect-error
 type error = TupleToObject<[[1, 2], {}]>
 
 // ============= Your Code Here =============
@@ -36,6 +35,7 @@ type A = typeof tupleNumber
 type K = A[number]
 
 // T[number] = 'tesla' | 'model 3' | 'model X' | 'model Y'
+// extends readonly any[] => tuple을 extends하는 방법
 type TupleToObject<T extends readonly any[]> = { [P in T[number]]: P }
 
 type B = TupleToObject<typeof tupleNumber>

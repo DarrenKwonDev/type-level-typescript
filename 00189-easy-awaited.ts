@@ -21,7 +21,7 @@ type error = MyAwaited<number>
 type MyAwaited<T> = T extends object & {
     then(onResolveFunc: infer F, ...args: infer _): any
 }
-    ? F extends (value: infer V, ...args: infer _) => any
+    ? F extends (value: infer V) => any
         ? MyAwaited<V>
         : never
     : T
