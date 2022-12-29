@@ -4,6 +4,12 @@ export type ExpectFalse<T extends false> = T
 export type IsTrue<T extends true> = T
 export type IsFalse<T extends false> = T
 
+
+// 근데 이게 더 자세한 것 같기도 https://github.com/Microsoft/TypeScript/issues/27024#issuecomment-421529650
+// export type Equals<X, Y> =
+//     (<T>() => T extends X ? 1 : 2) extends
+//     (<T>() => T extends Y ? 1 : 2) ? true : false;
+
 export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
     T
 >() => T extends Y ? 1 : 2
