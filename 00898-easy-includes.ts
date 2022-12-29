@@ -31,4 +31,4 @@ type Includes<T extends readonly any[], U> = T extends [infer P, ...infer K]
     ? Equal<P, U> extends true
         ? true
         : Includes<K, U> // 재귀적으로 check
-    : false
+    : false // 모두 체크했음에도 Equal 관계가 없으면 false
