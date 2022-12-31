@@ -29,5 +29,7 @@ interface Expected {
 }
 
 // ============= Your Code Here =============
+
+// K가 주어지지 않았을 때는 모두 Readonly 처리를 해야 하므로 K의 기본 값을 keyof T로 설정함
 type MyReadonly2<T, K extends keyof T = keyof T> = Readonly<Pick<T, K>> &
     Omit<T, K>
