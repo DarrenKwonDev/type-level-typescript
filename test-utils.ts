@@ -15,6 +15,7 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
 >() => T extends Y ? 1 : 2
     ? true
     : false
+
 export type NotEqual<X, Y> = true extends Equal<X, Y> ? false : true
 
 // https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360
