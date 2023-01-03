@@ -16,6 +16,10 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
     ? true
     : false
 
+// https://www.hacklewayne.com/dependent-types-in-typescript-seriously
+type TypeEqual<T, U> = T extends U ? U extends T ? true : false : false;
+
+
 export type NotEqual<X, Y> = true extends Equal<X, Y> ? false : true
 
 // https://stackoverflow.com/questions/49927523/disallow-call-with-any/49928360#49928360
