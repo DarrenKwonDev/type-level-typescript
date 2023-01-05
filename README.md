@@ -61,6 +61,18 @@ type BBC = AcceptNumberAndSubtype<typeof literalNumber> // true. number의 서�
 ```
 
 ```typescript
+// 위의 예시에서와 마찬가지로 string 타입은 "a"와 같은 string literal type을 포함한 슈퍼 타입임.
+// 아래와 같이 작성하면 string literal type을 받지 않을 수 있음.
+type A<T extends string> = string extends T ? true : false
+
+const a = "a" // "a"
+let b = "b" // string
+
+type AA = A<typeof a> // false
+type BB = A<typeof b> // true
+```
+
+```typescript
 type Join<T extends string[], U extends string | number> = T extends [
     infer First extends string, // First는 자동으로 string으로 추론되지 않음. 그냥 generic으로 들어와버림. 그래서 upper bound로 막아줘야 함
     ...infer Rest extends string[] // 마찬가지로 Rest도 string[] | string으로 추론되지 않고 generic으로 추론됨.
