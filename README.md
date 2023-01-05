@@ -8,7 +8,7 @@
     -   T 타입을 요구하는 곳에 T의 subtype을 타입을 넣어도 type check를 통과합니다.
 -   $A \sub B$ A는 B의 subtype, B는 A의 supertype
 -   typescript는 structural subtype, 즉, 구조에 의한 서브타입을 지원합니다.
-    -   T extends { message: string }과 같은 upper bound가 작동하는 이유입니다.
+    -   T extends { message: string }과 같은 upper bound를 주었을 때, 별다른 상속 절차 없이도 message 필드를 가지고 값이 string이기만 하면 T는 { message: string }의 서브타입이 됩니다.
 -   bottom type은 never, top type은 unknown과 any
     -   any는 독특하게도 top type이지만 모든 타입에서 가능한 동작만 지원한다는 top type의 기본 성질로 제한하는 기능이 없이 모든 동작을 열어 놓습니다.
 -   typescript는 flow-sensitive type checking를 지원합니다.
