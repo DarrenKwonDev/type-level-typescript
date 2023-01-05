@@ -50,11 +50,11 @@ type OnlyAcceptNumber<T extends number> = number extends T ? true : false
 // 반면 아래는 T가 number의 subtype이기만 해도 됨. 3, 4과 같은 literal도 포함이 됨.
 type AcceptNumberAndSubtype<T> = T extends number ? true : false
 
-const literalNumber = 3 // literal type
-let Number = 3 // number
+const literalNumber = 3 // literal type. typeof 찍으면 3
+let Number = 3 // number typeof 찍으면 number
 
-type AAA = OnlyAcceptNumber<typeof Number> // true. typeof dummy2는 number로 추론됨.
-type AAB = OnlyAcceptNumber<typeof literalNumber> // false. typeof dummy는 3으로 추론됨. number 가 아님
+type AAA = OnlyAcceptNumber<typeof Number> // true.
+type AAB = OnlyAcceptNumber<typeof literalNumber> // false.
 
 type BBB = AcceptNumberAndSubtype<typeof Number> // true. number의 서브 타입이기만 하면 됨
 type BBC = AcceptNumberAndSubtype<typeof literalNumber> // true. number의 서브 타입이기만 하면 됨
