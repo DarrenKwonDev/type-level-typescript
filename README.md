@@ -16,6 +16,7 @@
     -   즉, $A \sub B$일 때 (x: B) => C는 (x: A) => C의 서브타입입니다. 관계가 뒤집힙니다.
 -   typescript에서 extends는 upper bound로 작동합니다.
     -   A extends B는 A <: B, 즉, A가 B의 subtype임을 의미합니다.
+-   기본적으로 타입을 집합으로써 이해하는 관점이 type-level programming에 유리합니다.
 
 ## Note
 
