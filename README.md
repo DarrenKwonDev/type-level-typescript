@@ -43,6 +43,7 @@ type Required<T> = {
 ```
 
 ```typescript
+// ex. 1.
 // T는 number의 subtype이고 number도 T의 subtype 이어야 한다.
 // 결국 T가 곧 number여야 하며 3, 4와 같은 literal은 받아들일 수 없음.
 type OnlyAcceptNumber<T extends number> = number extends T ? true : false
@@ -58,9 +59,8 @@ type AAB = OnlyAcceptNumber<typeof literalNumber> // false.
 
 type BBB = AcceptNumberAndSubtype<typeof Number> // true. number의 서브 타입이기만 하면 됨
 type BBC = AcceptNumberAndSubtype<typeof literalNumber> // true. number의 서브 타입이기만 하면 됨
-```
 
-```typescript
+// ex. 2.
 // 위의 예시에서와 마찬가지로 string 타입은 "a"와 같은 string literal type을 포함한 슈퍼 타입임.
 // 아래와 같이 작성하면 string literal type을 받지 않을 수 있음.
 type A<T extends string> = string extends T ? true : false
@@ -70,6 +70,14 @@ let b = "b" // string
 
 type AA = A<typeof a> // false
 type BB = A<typeof b> // true
+
+// ex. 3.
+// 위의 두 경우를 좀 더 단순화해서 표현하면 다음과 같다.
+type OWT = 1 | 2 | 3
+type A<X extends OWT> = OWT extends X ? true : false
+
+type NOPE = A<1> // false
+type PASS = A<1 | 2 | 3> // true
 ```
 
 ```typescript
