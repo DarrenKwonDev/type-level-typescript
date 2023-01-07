@@ -37,6 +37,13 @@ type IsNever<T> = T | "decoy" extends "decoy" ? true : false
 ```
 
 ```typescript
+// 976431345 extends 0는 정의상 언제나 거짓이다.
+// 그러나 976431345 extends (0 & T) 는 T가 any라면 참이게 된다.
+// 참고로, (976431345 extends 0) & T 는 정의상 언제나 거짓이다. false & true여도 정듸상 false이기 때문이다.
+type IsAny<T> = 976431345 extends 0 & T ? true : false
+```
+
+```typescript
 // -readonly, -? 와 같이 -연산자를 붙여 속성 제거 가능
 type Mutable<T extends object> = {
     -readonly [P in keyof T]: T[P] // readonly 제거
@@ -83,6 +90,11 @@ type A<X extends OWT> = OWT extends X ? true : false
 
 type NOPE = A<1> // false
 type PASS = A<1 | 2 | 3> // true
+
+// ex 4.
+// 더 간단하게 표현하자면 다음과 같다.
+// T는 U의 subtype이고 U는 T의 subtype이어야 T = U 라는 것을 체크할 수 있다.
+type TypeEqual<T, U> = T extends U ? (U extends T ? true : false) : false
 ```
 
 ```typescript
