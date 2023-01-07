@@ -14,5 +14,5 @@ type cases = [
 
 // 976431345 extends 0는 정의상 언제나 거짓이다.
 // 그러나 976431345 extends (0 & T) 는 T가 any라면 참이게 된다.
-// 참고로, (976431345 extends 0) & T 는 정의상 언제나 거짓이다. false & true여도 정의상 false이기 때문이다.
+// 참고로, (976431345 extends 0) & T 는 사용 불가하지만, 만약 가능하다면 정의상 언제나 거짓이다. false & true여도 정의상 false이기 때문이다.
 type IsAny<T> = 976431345 extends 0 & T ? true : false
