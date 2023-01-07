@@ -19,6 +19,10 @@
     -   A extends B는 A <: B, 즉, A가 B의 subtype임을 의미합니다.
 -   기본적으로 타입을 집합으로써 이해하는 관점이 type-level programming에 유리합니다.
 
+## peano number
+
+튜링 완전하다고 하더라도 실제로 자연수에 대한 사칙연산을 하기 위해서는 peano number에 대한 일부 지식이 일부 요구됩니다.
+
 ## Note
 
 ```typescript
