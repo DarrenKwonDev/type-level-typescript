@@ -122,3 +122,10 @@ type NonNullable<T> = T & {}
 ```typescript
 // empty
 ```
+
+## Notable Projects 
+
+- https://github.com/millsp/ts-toolbelt   
+- https://github.com/piotrwitek/utility-types    
+- https://github.com/gcanti/fp-ts   
+- https://github.com/gvergnaud/ts-pattern   
