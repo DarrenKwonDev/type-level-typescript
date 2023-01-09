@@ -120,6 +120,31 @@ type NonNullable<T> = T & {}
 ```
 
 ```typescript
+type X<T> = T extends any[] ? true : false // array만 받으렴
+type Y<T> = T extends readonly any[] ? true : false // array와 tuple 둘 다 됨. readonly는 일종의 부분집합으로써 작동함.
+
+const array = [1, 2] // number[]로 추론
+const tuple = [1, 2] as const // readonly [1, 2]로 추론
+
+type XX = X<typeof array> // true
+type XXX = X<typeof tuple> // false
+
+type YY = Y<typeof array> // true
+type YYY = Y<typeof tuple> // true
+
+```
+
+```typescript
+// https://stackoverflow.com/questions/72127660/explanation-of-rlength-extends-n-syntax-in-typescript
+// The type of the length property of a tuple is a literal numeric type
+type IsTuple<T> = T extends readonly any[]
+    ? number extends T["length"]
+        ? false // T is an array
+        : true // T is tuple
+    : false
+```
+
+```typescript
 // empty
 ```
 

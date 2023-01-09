@@ -19,6 +19,10 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <
 // https://www.hacklewayne.com/dependent-types-in-typescript-seriously
 type TypeEqual<T, U> = T extends U ? U extends T ? true : false : false;
 
+// T | "decoy"가 "decoy"의 subtype이 되려면 T에는 오로지 never만이 허용된다.
+// 따라서 never를 감지할 수 있다.
+export type IsNever<T> = T | "decoy" extends "decoy" ? true : false
+
 
 export type NotEqual<X, Y> = true extends Equal<X, Y> ? false : true
 
