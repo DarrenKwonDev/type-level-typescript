@@ -30,3 +30,11 @@ type XXX = X<typeof tuple> // false
 
 type YY = Y<typeof array> // true
 type YYY = Y<typeof tuple> // true
+
+type IsTuple2<T> = T extends readonly any[]
+    ? number extends T["length"]
+        ? false // T is an array
+        : true // T is tuple
+    : false
+
+type A = IsTuple2<typeof tuple>
