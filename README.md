@@ -34,6 +34,10 @@ type ReturnAlwaysFalse<T> = T extends never ? true : false // bottom type의 정
 // T | "decoy"가 "decoy"의 subtype이 되려면 T에는 오로지 never만이 허용된다.
 // 따라서 never를 감지할 수 있다.
 type IsNever<T> = T | "decoy" extends "decoy" ? true : false
+
+// generic extends할 때 distributivity를 제거하는 관점에서는 아래와 같이 표현 가능
+// https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types
+type IsNever<T> = [T] extends [never] ? true : false
 ```
 
 ```typescript
