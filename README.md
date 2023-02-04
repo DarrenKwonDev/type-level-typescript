@@ -18,6 +18,8 @@
 -   typescript에서 extends는 upper bound로 작동합니다.
     -   A extends B는 A <: B, 즉, A가 B의 subtype임을 의미합니다.
 -   기본적으로 타입을 집합으로써 이해하는 관점이 type-level programming에 유리합니다.
+-   [distributive conditional types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types)은 유용합니다.
+    -   distributivity를 방지하기 위해서는 `[T] extends [any]`와 같은 꼴의 사용이 필요합니다.
 
 ## peano number
 
