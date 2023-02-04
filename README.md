@@ -151,6 +151,14 @@ type IsTuple<T> = T extends readonly any[]
 ```
 
 ```typescript
+// 아래와 같은 꼴을 본래 타입인 T를 유지하기 위해 사용하곤 한다.
+type Something<T, K = T> = ...
+
+// generic K에 대한 타입을 할당하지 않았으므로 <string, string> 꼴이 됨.
+let a = Something<string>
+```
+
+```typescript
 // empty
 ```
 
@@ -160,3 +168,4 @@ type IsTuple<T> = T extends readonly any[]
 - https://github.com/piotrwitek/utility-types    
 - https://github.com/gcanti/fp-ts   
 - https://github.com/gvergnaud/ts-pattern   
+- https://ghaiklor.github.io/type-challenges-solutions/en/  
