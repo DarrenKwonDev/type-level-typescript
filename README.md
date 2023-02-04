@@ -20,12 +20,46 @@
 -   기본적으로 타입을 집합으로써 이해하는 관점이 type-level programming에 유리합니다.
 -   [distributive conditional types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types)은 유용합니다.
     -   distributivity를 방지하기 위해서는 `[T] extends [any]`와 같은 꼴의 사용이 필요합니다.
+    -  아래와 같은 꼴은 항상 true branch를 타게 되지만 무의미한 타입이 아닙니다. 이 타입들의 목적은 T가 유니언인 경우 distribute 시키는 목적이 있습니다. T가 string | number인 경우 string 한 번 ...에 태우고, number 한 번 ...에 태우는 게 됩니다.
+    -   ```typescript
+            T extends unknown ? ... : never
+            T extends any ? ... : never
+            T extends T ? ... : never
+        ```
 
 ## peano number
 
 튜링 완전하다고 하더라도 실제로 자연수에 대한 사칙연산을 하기 위해서는 peano number에 대한 일부 지식이 일부 요구됩니다.
 
 ## Note
+
+
+```typescript
+// distributive conditional types
+type Distribute<T> = T extends any ? T[] : never
+type NonDistribute<T> = [T] extends any ? T[] : never
+
+declare const a: Distribute<string | number> // string[] | number[]
+declare const b: NonDistribute<string | number> // (string | number)[]
+```
+
+```typescript
+type NonDistribute<Type> = [Type] extends [unknown] ? Type[] : never
+
+type A<T> = T extends unknown ? NonDistribute<T> : never
+type B<T> = T extends any ? NonDistribute<T> : never
+type C<T> = T extends T ? NonDistribute<T> : never
+
+// NoneDistribute 타입을 매겼으나 A, B, C 타입은 모두 distribution이 일어나기 때문에 distribution을 한 것과 같은 결과를 반환한다.
+declare const a: A<string | number> // (string | number)[]가 아닌 string[] | number[]
+```
+
+```typescript
+// 아래와 같은 꼴을 본래 타입인 T를 유지하기 위해 사용하곤 한다. 
+// 특히, distribution 되기 전의 타입을 유지하기 위해 사용한다.
+// 실 사용례로 'IsUnion' 문제를 참고하라.
+type Something<T, K = T> = ...
+```
 
 ```typescript
 // never는 bottom type 인데 upper bound로 never를 주면 아무 것도 없게 된다.
@@ -148,14 +182,6 @@ type IsTuple<T> = T extends readonly any[]
         ? false // T is an array
         : true // T is tuple
     : false
-```
-
-```typescript
-// 아래와 같은 꼴을 본래 타입인 T를 유지하기 위해 사용하곤 한다.
-type Something<T, K = T> = ...
-
-// generic K에 대한 타입을 할당하지 않았으므로 <string, string> 꼴이 됨.
-let a = Something<string>
 ```
 
 ```typescript
